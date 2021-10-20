@@ -1,11 +1,10 @@
-package com.apricity.starter.web.mybatisplus;
+package com.apricity.starter.web.mybatisplus.condition;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Function;
 
 public enum ConditionEnums {
@@ -46,10 +45,13 @@ public enum ConditionEnums {
     TIN(LocalDateTime.class, null), // 日期时间
     IN(String.class, null); // IN语句
 
-    private final Class<?> type;
-    private final Function<String, List<Condition>> conditionParser;
 
-    private ConditionEnums(Class<?> type,Function<String, List<Condition>> conditionParser) {
+    // public abstract String getSqlSegment(String key, String value);
+
+    private final Class<?> type;
+    private final Function<String, String> conditionParser;
+
+    private ConditionEnums(Class<?> type,Function<String, String> conditionParser) {
         this.type = type;
         this.conditionParser = conditionParser;
     }

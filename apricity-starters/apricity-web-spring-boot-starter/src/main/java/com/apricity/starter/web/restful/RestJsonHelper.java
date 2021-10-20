@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.apricity.starter.web.mybatisplus.ConditionEnums.SB;
+import static com.apricity.starter.web.mybatisplus.condition.ConditionEnums.SB;
 
 public class RestJsonHelper {
 
