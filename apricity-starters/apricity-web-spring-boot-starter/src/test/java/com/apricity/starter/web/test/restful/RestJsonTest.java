@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RestJsonTest {
     @Test
     void testRestJsonToJsonString() throws JsonProcessingException {
-        final RestJson restJson = new RestJson();
+        final RestJson restJson = new RestJson("");
 
         final Parameter parameter = new Parameter();
         parameter.putExtItem("hello", "world");
@@ -22,7 +22,6 @@ public class RestJsonTest {
 
         TestDataBean dataBean = new TestDataBean();
         dataBean.setName("name");
-        restJson.setData(new ArrayList<>());
 
         final String result = new ObjectMapper().writeValueAsString(restJson);
         assertEquals(result, "{\"param\":{\"page\":0,\"size\":0,\"conditions\":{},\"orders\":{},\"ext$\":{\"hello\":\"world\"},\"hello\":\"world\"},\"data\":[{\"name\":\"name\"}],\"repository\":null}");

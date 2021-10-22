@@ -16,12 +16,16 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class ToRestJsonResolver implements HandlerMethodArgumentResolver {
+
+    private final static String PARAM = "param";
+    private final static String DATA = "data";
+    private final static String REPO = "repo";
 
     private final ObjectMapper objectMapper;
 
@@ -48,9 +52,16 @@ public class ToRestJsonResolver implements HandlerMethodArgumentResolver {
         }
 
         String requestJson = getRequestJson(webRequest);
-        LinkedHashMap<String, String> requestMap = RestJsonHelper.jsonStrToMap(requestJson, objectMapper);
+        RestJson restJson = new RestJson(requestJson);
 
-        return null;
+        Map<String, String> requestMap = RestJsonHelper.jsonStrToMap(requestJson, objectMapper);
+
+        QueryParamParser queryParamParser = new QueryParamParser(requestMap.get(PARAM), objectMapper);
+        restJson.setParam(queryParamParser.parse());
+        restJson.setDataJsonStr(requestMap.get(DATA));
+        restJson.setRepository(requestMap.get(REPO));
+
+        return restJson;
     }
 
     private String getRequestJson(NativeWebRequest webRequest) {

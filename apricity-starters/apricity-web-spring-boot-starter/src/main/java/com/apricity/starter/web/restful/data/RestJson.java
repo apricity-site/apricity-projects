@@ -3,12 +3,15 @@ package com.apricity.starter.web.restful.data;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
-import java.util.List;
-
 public class RestJson {
     private Parameter param;
-    private List<String> data;
+    private String dataJsonStr;
     private String repository;
+    private final String requestJson;
+
+    public RestJson(String requestJson) {
+        this.requestJson = requestJson;
+    }
 
 
     public static void main(String[] args) {
@@ -27,12 +30,16 @@ public class RestJson {
         this.param = param;
     }
 
-    public List<String> getData() {
-        return data;
+    public String getDataJsonStr() {
+        return dataJsonStr;
     }
 
-    public void setData(List<String> data) {
-        this.data = data;
+    public void setDataJsonStr(String dataJsonStr) {
+        this.dataJsonStr = dataJsonStr;
+    }
+
+    public String getRequestJson() {
+        return requestJson;
     }
 
     public String getRepository() {
