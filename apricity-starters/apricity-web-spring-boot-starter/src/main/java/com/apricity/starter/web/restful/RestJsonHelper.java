@@ -12,8 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.apricity.starter.web.mybatisplus.condition.ConditionEnums.SB;
-
 public class RestJsonHelper {
 
     private static final ThreadLocal<List<OrderItem>> ORDER_ITEM_LIST_CONTAINER = new ThreadLocal<>();
@@ -62,9 +60,6 @@ public class RestJsonHelper {
                 if (StringUtils.contains(k, StringPool.UNDERSCORE)) {
                     String conditionName = k.substring(0, k.indexOf(StringPool.UNDERSCORE));
                     String originValue = k.substring(k.indexOf(StringPool.UNDERSCORE) + 1);
-                    if (SB.name().equals(conditionName)){
-
-                    }
                 }
             });
         }

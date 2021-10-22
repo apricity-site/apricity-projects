@@ -11,7 +11,6 @@ import java.net.URL;
 
 /**
  * 判断文件或字符串的格式<br>
- * 该代码来源于网络,原名为EncodingDetect,并对其进行了部分优化
  */
 public class EncodingDetect {
     private static final BytesEncodingDetect encodingDetect = new BytesEncodingDetect();

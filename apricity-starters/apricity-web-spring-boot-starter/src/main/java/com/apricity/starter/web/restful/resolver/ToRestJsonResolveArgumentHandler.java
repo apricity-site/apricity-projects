@@ -16,12 +16,12 @@ import java.util.Objects;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
-public class ToRestJsonWrapperResolveArgumentHandler {
+public class ToRestJsonResolveArgumentHandler {
     private final MethodParameter parameter;
     private final NativeWebRequest webRequest;
 
-    public ToRestJsonWrapperResolveArgumentHandler(MethodParameter parameter,
-                                                   NativeWebRequest webRequest) {
+    public ToRestJsonResolveArgumentHandler(MethodParameter parameter,
+                                            NativeWebRequest webRequest) {
         this.parameter = parameter;
         this.webRequest = webRequest;
     }
