@@ -30,7 +30,6 @@ public class Condition {
     }
 
     public String toSqlSegment() {
-
         return null;
     }
 
