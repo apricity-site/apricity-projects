@@ -1,10 +1,10 @@
 package com.apricity.starter.web.restful.resolver;
 
 import com.apricity.exception.UnexpectedException;
+import com.apricity.starter.web.restful.RestJsonHelper;
 import com.apricity.starter.web.restful.data.RestJson;
 import com.apricity.utils.AStringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.MapType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpMethod;
@@ -48,7 +48,7 @@ public class ToRestJsonResolver implements HandlerMethodArgumentResolver {
         }
 
         String requestJson = getRequestJson(webRequest);
-        LinkedHashMap<String, String> requestMap = RestJsonResolverHelper.jsonStrToMap(requestJson, objectMapper);
+        LinkedHashMap<String, String> requestMap = RestJsonHelper.jsonStrToMap(requestJson, objectMapper);
 
         return null;
     }

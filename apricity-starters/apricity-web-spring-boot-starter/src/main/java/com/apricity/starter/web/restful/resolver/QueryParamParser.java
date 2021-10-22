@@ -1,5 +1,6 @@
 package com.apricity.starter.web.restful.resolver;
 
+import com.apricity.starter.web.restful.RestJsonHelper;
 import com.apricity.starter.web.restful.data.Parameter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +28,7 @@ public class QueryParamParser {
         this.paramStr = paramStr;
         this.objectMapper = objectMapper;
         if (StringUtils.isNotBlank(paramStr)) {
-            paramMap.putAll(RestJsonResolverHelper.jsonStrToMap(paramStr, objectMapper));
+            paramMap.putAll(RestJsonHelper.jsonStrToMap(paramStr, objectMapper));
         }
     }
 
@@ -50,7 +51,7 @@ public class QueryParamParser {
     private void parseOrders() throws JsonProcessingException {
         if (Objects.nonNull(paramMap.get(ORDER))) {
             parameter.getOrders().putAll(
-                    RestJsonResolverHelper.jsonStrToMap(paramMap.get(ORDER), objectMapper)
+                    RestJsonHelper.jsonStrToMap(paramMap.get(ORDER), objectMapper)
             );
         }
         paramMap.remove(ORDER);

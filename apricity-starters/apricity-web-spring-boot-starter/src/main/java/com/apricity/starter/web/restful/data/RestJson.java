@@ -1,7 +1,6 @@
 package com.apricity.starter.web.restful.data;
 
 
-import com.apricity.starter.web.restful.RestJsonHelper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import java.util.List;
@@ -11,15 +10,6 @@ public class RestJson {
     private List<String> data;
     private String repository;
 
-    // 解析data
-    public <T> List<T> parse(Class<T> clazz){
-        return RestJsonHelper.parse(this, clazz);
-    }
-
-    // 解析排序
-    public void buildOrders() {
-        RestJsonHelper.parseOrders(this);
-    }
 
     public static void main(String[] args) {
 

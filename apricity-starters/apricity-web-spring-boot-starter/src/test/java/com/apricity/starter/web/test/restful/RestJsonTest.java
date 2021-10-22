@@ -1,6 +1,5 @@
 package com.apricity.starter.web.test.restful;
 
-import com.apricity.starter.web.restful.RestJsonHelper;
 import com.apricity.starter.web.restful.data.Parameter;
 import com.apricity.starter.web.restful.data.RestJson;
 import com.apricity.starter.web.test.restful.bean.TestDataBean;
@@ -9,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -37,10 +35,5 @@ public class RestJsonTest {
 
     @Test
     void testParseCondition() {
-        final RestJson restJson = new RestJson();
-        Parameter param = new Parameter();
-        param.getConditions().put("column_NEQ", 1);
-        restJson.setParam(param);
-        RestJsonHelper.parseCondition(restJson);
     }
 }
