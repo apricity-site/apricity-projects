@@ -3,19 +3,13 @@ package com.apricity.starter.web.restful.data;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Parameter {
     private int page;
     private int size;
-    /**
-     * {
-     *    id_EQ : 1
-     * }
-     */
-    private final Map<String, Object> conditions = new HashMap<>();
+    private final Map<String, Object> conditions = new LinkedHashMap<>();
     private final Map<String, String> orders = new LinkedHashMap<>();
     @JsonAnyGetter
     @JsonAnySetter
