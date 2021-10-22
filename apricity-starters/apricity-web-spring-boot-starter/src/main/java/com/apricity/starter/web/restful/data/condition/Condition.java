@@ -1,4 +1,4 @@
-package com.apricity.starter.web.mybatisplus.condition;
+package com.apricity.starter.web.restful.data.condition;
 
 import java.util.ArrayList;
 import java.util.List;

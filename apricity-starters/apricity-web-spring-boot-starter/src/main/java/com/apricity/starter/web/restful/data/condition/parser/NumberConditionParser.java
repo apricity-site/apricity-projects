@@ -1,6 +1,6 @@
-package com.apricity.starter.web.mybatisplus.condition.parser;
+package com.apricity.starter.web.restful.data.condition.parser;
 
-import com.apricity.starter.web.mybatisplus.condition.ConditionParser;
+import com.apricity.starter.web.restful.data.condition.ConditionParser;
 
 public class NumberConditionParser extends ConditionParser {
 
