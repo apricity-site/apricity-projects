@@ -1,13 +1,16 @@
-## Condition 参数示例
+## param 参数示例
 
 ```json
 {
+  "page": 1,
+  "size": 10,
+  "where": {
     "column1": {
-        "type": "string",
-        "_eq": "value"
+      "type": "string",
+      "_eq": "value"
     },
     "column2": {
-        "_like_left": "value"
+      "_like_left": "value"
     },
     "_or": {
       "column3": {
@@ -29,5 +32,9 @@
       "type": "datetime",
       "_range": "(2021-01-01 00:00:00,2021-10-01 00:00:00]"
     }
+  },
+  "order_by": {
+    "columnName": "asc"
+  }
 }
 ```
