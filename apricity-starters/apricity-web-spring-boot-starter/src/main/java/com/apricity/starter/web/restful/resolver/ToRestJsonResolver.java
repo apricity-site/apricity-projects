@@ -3,9 +3,8 @@ package com.apricity.starter.web.restful.resolver;
 import com.apricity.exception.UnexpectedException;
 import com.apricity.starter.web.restful.RestJsonHelper;
 import com.apricity.starter.web.restful.data.RestJson;
-import com.apricity.utils.AStringUtils;
+import com.apricity.utils.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -47,7 +46,7 @@ public class ToRestJsonResolver implements HandlerMethodArgumentResolver {
         final HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
         if (Objects.isNull(request) ||
                 (HttpMethod.GET.name().equals(request.getMethod()) &&
-                        StringUtils.contains(request.getContentType(), APPLICATION_JSON_VALUE))) {
+                        org.apache.commons.lang3.StringUtils.contains(request.getContentType(), APPLICATION_JSON_VALUE))) {
             return null;
         }
 
@@ -68,7 +67,7 @@ public class ToRestJsonResolver implements HandlerMethodArgumentResolver {
         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
         if (Objects.isNull(request)) return null;
         try (InputStream is = request.getInputStream()) {
-            return AStringUtils.read(is);
+            return StringUtils.read(is);
         } catch (IOException ioe) {
             throw new UnexpectedException(ioe);
         }

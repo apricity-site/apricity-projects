@@ -64,7 +64,7 @@ public class QueryParamParser {
         paramMap.remove(WHERE);
     }
 
-    private void parsePagination() {
+    private void                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       parsePagination() {
         parameter.setPage(1);
         parameter.setSize(-1);
         if (Objects.nonNull(paramMap.get(PAGE))) parameter.setPage(Integer.parseInt(paramMap.get(PAGE)));
