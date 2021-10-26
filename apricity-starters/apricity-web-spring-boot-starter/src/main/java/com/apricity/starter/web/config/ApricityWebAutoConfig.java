@@ -1,13 +1,15 @@
 package com.apricity.starter.web.config;
 
+import com.apricity.starter.web.repository.RepositoryInitializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-
+@Import(RepositoryInitializer.class)
 public class ApricityWebAutoConfig implements InitializingBean {
 
     @Bean
