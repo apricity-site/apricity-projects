@@ -5,7 +5,7 @@ import com.apricity.starter.web.repository.RepositoryHelper;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-public enum MetadataManager {
+public enum EntityMetadataManager {
 
     INSTANCE;
 

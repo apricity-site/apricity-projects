@@ -6,7 +6,7 @@ import com.apricity.starter.web.repository.annotation.Table;
 import com.apricity.starter.web.repository.meta.EntityMetadata;
 import com.apricity.starter.web.repository.meta.FieldMetadata;
 import com.apricity.starter.web.repository.meta.IdDescriptor;
-import com.apricity.starter.web.repository.meta.MetadataManager;
+import com.apricity.starter.web.repository.meta.EntityMetadataManager;
 import com.apricity.utils.StringUtils;
 import org.springframework.context.ApplicationContext;
 
@@ -38,7 +38,7 @@ public class RepositoryInitializer {
                 .idDescriptor(resolveIdDesc(entityClass))
                 .tableName(resolveTablName(entityClass))
                 .build();
-        MetadataManager.INSTANCE.registerMetadata(entityMetadata);
+        EntityMetadataManager.INSTANCE.registerMetadata(entityMetadata);
     }
 
     private String resolveTablName(Class<?> entityClass) {
