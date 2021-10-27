@@ -1,5 +1,6 @@
 package com.apricity.utils;
 
+import com.apricity.constant.StringPool;
 import com.apricity.exception.FileException;
 
 import java.io.IOException;
@@ -43,19 +44,25 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         }
     }
 
-    public static String underscoreToCamelCase(String source) {
-        if (!source.contains("_")) {
-            return source;
+    /**
+     * 字符串下划线转驼峰格式
+     *
+     * @param param 需要转换的字符串
+     * @return 转换好的字符串
+     */
+    public static String underlineToCamel(String param) {
+        if (isBlank(param)) {
+            return EMPTY;
         }
-        char[] chars = source.toCharArray();
-        StringBuilder sb = new StringBuilder();
-        boolean nextUpper = false;
-        for (char c : chars) {
+        String temp = param.toLowerCase();
+        int len = temp.length();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            char c = temp.charAt(i);
             if (c == '_') {
-                nextUpper = true;
-            } else if (nextUpper) {
-                sb.append(Character.toUpperCase(c));
-                nextUpper = false;
+                if (++i < len) {
+                    sb.append(Character.toUpperCase(temp.charAt(i)));
+                }
             } else {
                 sb.append(c);
             }
@@ -63,15 +70,24 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return sb.toString();
     }
 
-    public static String camelCaseToUnderscore(String source) {
-        char[] chars = source.toCharArray();
-        StringBuilder sb = new StringBuilder();
-        for (char c : chars) {
-            if (Character.isUpperCase(c)) {
-                sb.append('_').append(Character.toLowerCase(c));
-            } else {
-                sb.append(c);
+    /**
+     * 字符串驼峰转下划线格式
+     *
+     * @param param 需要转换的字符串
+     * @return 转换好的字符串
+     */
+    public static String camelToUnderline(String param) {
+        if (isBlank(param)) {
+            return EMPTY;
+        }
+        int len = param.length();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            char c = param.charAt(i);
+            if (Character.isUpperCase(c) && i > 0) {
+                sb.append('_');
             }
+            sb.append(Character.toLowerCase(c));
         }
         return sb.toString();
     }
