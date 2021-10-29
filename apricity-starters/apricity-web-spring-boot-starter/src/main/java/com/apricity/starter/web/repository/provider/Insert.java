@@ -14,7 +14,6 @@ public class Insert extends AbstractProvider{
                 .INTO_COLUMNS(entityMetadata.getFields().stream()
                         .map(FieldMetadata::getColumnName).toArray(String[]::new)
                 ).INTO_VALUES();
-
         return null;
     }
 }

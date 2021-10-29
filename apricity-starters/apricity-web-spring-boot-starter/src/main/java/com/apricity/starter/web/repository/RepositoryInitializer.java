@@ -1,5 +1,6 @@
 package com.apricity.starter.web.repository;
 
+import com.apricity.starter.web.properties.ApricityProperties;
 import com.apricity.starter.web.properties.MybatisProperties;
 import com.apricity.starter.web.repository.annotation.Column;
 import com.apricity.starter.web.repository.annotation.Id;
@@ -20,9 +21,10 @@ public class RepositoryInitializer {
     private final MybatisProperties globalConfig;
 
     public RepositoryInitializer(ApplicationContext ctx,
-                                 MybatisProperties globalConfig) throws Exception {
+                                 ApricityProperties properties) throws Exception {
         this.applicationContext = ctx;
-        this.globalConfig = globalConfig;
+        this.globalConfig = properties.getMybatis();
+        RepositoryHelper.setGlobalConfig(globalConfig);
         init();
     }
 
