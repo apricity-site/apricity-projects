@@ -1,5 +1,6 @@
 package com.apricity.starter.web.repository;
 
+import com.apricity.starter.web.properties.MybatisProperties;
 import com.apricity.starter.web.repository.annotation.Column;
 import com.apricity.starter.web.repository.annotation.Id;
 import com.apricity.starter.web.repository.annotation.Table;
@@ -16,9 +17,12 @@ import java.util.*;
 public class RepositoryInitializer {
 
     private final ApplicationContext applicationContext;
+    private final MybatisProperties globalConfig;
 
-    public RepositoryInitializer(ApplicationContext applicationContext) throws Exception {
-        this.applicationContext = applicationContext;
+    public RepositoryInitializer(ApplicationContext ctx,
+                                 MybatisProperties globalConfig) throws Exception {
+        this.applicationContext = ctx;
+        this.globalConfig = globalConfig;
         init();
     }
 
@@ -36,18 +40,20 @@ public class RepositoryInitializer {
         EntityMetadata entityMetadata = EntityMetadata.builder().entityClass(entityClass)
                 .fields(resolveEntityFields(entityClass))
                 .idDescriptor(resolveIdDesc(entityClass))
-                .tableName(resolveTablName(entityClass))
+                .tableName(resolveTableName(entityClass))
                 .build();
         EntityMetadataManager.INSTANCE.registerMetadata(entityMetadata);
     }
 
-    private String resolveTablName(Class<?> entityClass) {
+    private String resolveTableName(Class<?> entityClass) {
         Table table = entityClass.getAnnotation(Table.class);
         if (Objects.nonNull(table)) {
             return table.value();
         }
-        // TODO 全局表名前缀 && 下划线
-        return entityClass.getSimpleName().toLowerCase();
+        String className = entityClass.getSimpleName();
+        return globalConfig.getTablePrefix() +
+                (globalConfig.isCamelToUnderline() ?
+                        StringUtils.camelToUnderline(className) : className.toLowerCase());
     }
 
 
@@ -91,8 +97,7 @@ public class RepositoryInitializer {
         if (Objects.nonNull(column)) {
             return column.updateIfNull();
         }
-        // TODO 全局配置
-        return false;
+        return globalConfig.isUpdateIfNull();
     }
 
     private String resolveColumnName(Field field) {
@@ -100,7 +105,7 @@ public class RepositoryInitializer {
         if (Objects.nonNull(column) && StringUtils.isNotBlank(column.value())) {
             return column.value();
         }
-        // TODO 根据全局配置设置下划线
-        return field.getName().toLowerCase();
+        return globalConfig.isCamelToUnderline() ?
+                StringUtils.camelToUnderline(field.getName()) : field.getName().toLowerCase();
     }
 }

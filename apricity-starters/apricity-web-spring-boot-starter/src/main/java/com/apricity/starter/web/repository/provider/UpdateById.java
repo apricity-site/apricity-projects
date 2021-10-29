@@ -1,5 +1,6 @@
 package com.apricity.starter.web.repository.provider;
 
+import com.apricity.starter.web.repository.RepositoryHelper;
 import com.apricity.starter.web.repository.meta.EntityMetadata;
 import org.apache.ibatis.jdbc.SQL;
 
