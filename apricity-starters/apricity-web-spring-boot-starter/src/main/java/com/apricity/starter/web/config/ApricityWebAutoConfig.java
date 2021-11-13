@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-@Import({RepositoryInitializer.class, ApplicationContextHelper.class})
+@Import({ApplicationContextHelper.class, RepositoryInitializer.class})
 @EnableConfigurationProperties(ApricityProperties.class)
 public class ApricityWebAutoConfig implements InitializingBean {
 
